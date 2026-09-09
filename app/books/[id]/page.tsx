@@ -10,7 +10,7 @@ export default async function BookDetailsPage({
 }){
     const { id } = await params;
 
-    const book = await prisma.book.findUniqu({
+    const book = await prisma.book.findUnique({
         where: {
             id: Number(id),
         },
