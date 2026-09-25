@@ -21,7 +21,7 @@ export default function Home() {
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#e9e1d2] px-4 py-2 text-sm font-medium text-[#7c5c35]">
               <Sparkles size={16} />
-              Your personal digital library
+              Ebenezer Book App
             </div>
 
             <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-[#172033] md:text-6xl">
