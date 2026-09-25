@@ -251,7 +251,6 @@ export type BookOrderByWithRelationInput = {
   pdf?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  _relevance?: Prisma.BookOrderByRelevanceInput
 }
 
 export type BookWhereUniqueInput = Prisma.AtLeast<{
@@ -372,12 +371,6 @@ export type BookUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type BookOrderByRelevanceInput = {
-  fields: Prisma.BookOrderByRelevanceFieldEnum | Prisma.BookOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
-}
-
 export type BookCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
@@ -452,7 +445,27 @@ export type BookSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
 }, ExtArgs["result"]["book"]>
 
+export type BookSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  title?: boolean
+  author?: boolean
+  description?: boolean
+  image?: boolean
+  pdf?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+}, ExtArgs["result"]["book"]>
 
+export type BookSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+  id?: boolean
+  title?: boolean
+  author?: boolean
+  description?: boolean
+  image?: boolean
+  pdf?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+}, ExtArgs["result"]["book"]>
 
 export type BookSelectScalar = {
   id?: boolean
@@ -597,6 +610,30 @@ export interface BookDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
   createMany<T extends BookCreateManyArgs>(args?: Prisma.SelectSubset<T, BookCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
+   * Create many Books and returns the data saved in the database.
+   * @param {BookCreateManyAndReturnArgs} args - Arguments to create many Books.
+   * @example
+   * // Create many Books
+   * const book = await prisma.book.createManyAndReturn({
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Create many Books and only return the `id`
+   * const bookWithIdOnly = await prisma.book.createManyAndReturn({
+   *   select: { id: true },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  createManyAndReturn<T extends BookCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, BookCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+  /**
    * Delete a Book.
    * @param {BookDeleteArgs} args - Arguments to delete one Book.
    * @example
@@ -659,6 +696,36 @@ export interface BookDelegate<ExtArgs extends runtime.Types.Extensions.InternalA
    * 
    */
   updateMany<T extends BookUpdateManyArgs>(args: Prisma.SelectSubset<T, BookUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+
+  /**
+   * Update zero or more Books and returns the data updated in the database.
+   * @param {BookUpdateManyAndReturnArgs} args - Arguments to update many Books.
+   * @example
+   * // Update many Books
+   * const book = await prisma.book.updateManyAndReturn({
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * 
+   * // Update zero or more Books and only return the `id`
+   * const bookWithIdOnly = await prisma.book.updateManyAndReturn({
+   *   select: { id: true },
+   *   where: {
+   *     // ... provide filter here
+   *   },
+   *   data: [
+   *     // ... provide data here
+   *   ]
+   * })
+   * Note, that providing `undefined` is treated as the value not being there.
+   * Read more here: https://pris.ly/d/null-undefined
+   * 
+   */
+  updateManyAndReturn<T extends BookUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, BookUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
    * Create or update one Book.
@@ -1070,6 +1137,25 @@ export type BookCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Book createManyAndReturn
+ */
+export type BookCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Book
+   */
+  select?: Prisma.BookSelectCreateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Book
+   */
+  omit?: Prisma.BookOmit<ExtArgs> | null
+  /**
+   * The data used to create many Books.
+   */
+  data: Prisma.BookCreateManyInput | Prisma.BookCreateManyInput[]
+  skipDuplicates?: boolean
+}
+
+/**
  * Book update
  */
 export type BookUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1095,6 +1181,32 @@ export type BookUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
  * Book updateMany
  */
 export type BookUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * The data used to update Books.
+   */
+  data: Prisma.XOR<Prisma.BookUpdateManyMutationInput, Prisma.BookUncheckedUpdateManyInput>
+  /**
+   * Filter which Books to update
+   */
+  where?: Prisma.BookWhereInput
+  /**
+   * Limit how many Books to update.
+   */
+  limit?: number
+}
+
+/**
+ * Book updateManyAndReturn
+ */
+export type BookUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Book
+   */
+  select?: Prisma.BookSelectUpdateManyAndReturn<ExtArgs> | null
+  /**
+   * Omit specific fields from the Book
+   */
+  omit?: Prisma.BookOmit<ExtArgs> | null
   /**
    * The data used to update Books.
    */

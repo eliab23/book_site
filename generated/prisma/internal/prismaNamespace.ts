@@ -449,6 +449,10 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
           args: Prisma.BookCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
+        createManyAndReturn: {
+          args: Prisma.BookCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>[]
+        }
         delete: {
           args: Prisma.BookDeleteArgs<ExtArgs>
           result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>
@@ -464,6 +468,10 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         updateMany: {
           args: Prisma.BookUpdateManyArgs<ExtArgs>
           result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BookUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BookPayload>[]
         }
         upsert: {
           args: Prisma.BookUpsertArgs<ExtArgs>
@@ -544,23 +552,20 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+} as const
+
+export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const BookOrderByRelevanceFieldEnum = {
-  title: 'title',
-  author: 'author',
-  description: 'description',
-  image: 'image',
-  pdf: 'pdf'
-} as const
-
-export type BookOrderByRelevanceFieldEnum = (typeof BookOrderByRelevanceFieldEnum)[keyof typeof BookOrderByRelevanceFieldEnum]
 
 
 
@@ -577,9 +582,23 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
 
 
 /**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
  * Reference to a field of type 'String'
  */
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+/**
+ * Reference to a field of type 'String[]'
+ */
+export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -591,9 +610,23 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
 
 
 /**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**

@@ -1,12 +1,16 @@
-import { PrismaClient } from "@/generated/prisma/client";
-import { PrismaMariaDb } from "@prisma/adapter-mariadb";
+import "dotenv/config";
 
-const adapter = new PrismaMariaDb({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "book_app",
-  connectionLimit: 5,
+import { PrismaClient } from "@/generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+
+const connectionString = process.env.DATABASE_URL;
+
+if (!connectionString) {
+  throw new Error("DATABASE_URL is not defined");
+}
+
+const adapter = new PrismaPg({
+  connectionString,
 });
 
 const globalForPrisma = globalThis as unknown as {
